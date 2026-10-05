@@ -1,6 +1,7 @@
 # Mokke
 
 > A note-taking system that respects the physicality of handwriting while unlocking the composability of digital.
+> fork to make the app easier with intergration for tagging
 
 Every note-taking app forces a choice: capture naturally with a stylus, or capture in a format that's useful later. Handwriting apps produce dead-end image files. Structured apps demand you type and organize in real time, breaking the flow of thought.
 
