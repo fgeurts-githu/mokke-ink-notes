@@ -24,6 +24,8 @@ class HWRInputArgs() : Parcelable {
     var pfd: ParcelFileDescriptor? = null
     var content: String? = null
 
+    // Single-arg readParcelable below: the two-arg overload needs Android 13+.
+    @Suppress("DEPRECATION")
     constructor(parcel: Parcel) : this() {
         val className = parcel.readString()
         if (className != null) {
@@ -38,7 +40,7 @@ class HWRInputArgs() : Parcelable {
             isTextEnable = parcel.readByte() != 0.toByte()
             isShapeEnable = parcel.readByte() != 0.toByte()
             isIncremental = parcel.readByte() != 0.toByte()
-            pfd = parcel.readParcelable(ParcelFileDescriptor::class.java.classLoader, ParcelFileDescriptor::class.java)
+            pfd = parcel.readParcelable<ParcelFileDescriptor>(ParcelFileDescriptor::class.java.classLoader)
             content = parcel.readString()
         }
     }

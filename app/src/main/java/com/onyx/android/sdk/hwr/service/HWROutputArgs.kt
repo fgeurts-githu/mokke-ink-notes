@@ -17,8 +17,11 @@ class HWROutputArgs() : Parcelable {
     var outputType: Int = 0
     var itemIdMap: String? = null
 
+    // Use the single-arg readParcelable: the two-arg (ClassLoader, Class) overload
+    // only exists on Android 13+ and throws NoSuchMethodError on Android 12 and below.
+    @Suppress("DEPRECATION")
     constructor(parcel: Parcel) : this() {
-        pfd = parcel.readParcelable(ParcelFileDescriptor::class.java.classLoader, ParcelFileDescriptor::class.java)
+        pfd = parcel.readParcelable<ParcelFileDescriptor>(ParcelFileDescriptor::class.java.classLoader)
         recognizerActivated = parcel.readByte() != 0.toByte()
         compileSuccess = parcel.readByte() != 0.toByte()
         hwrResult = parcel.readString()
